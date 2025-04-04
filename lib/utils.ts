@@ -1,10 +1,9 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
 
 export const formatNumberWithDecimal = (num: number): string => {
   const [int, decimal] = num.toString().split('.')
@@ -18,3 +17,17 @@ export const toSlug = (text: string): string =>
     .replace(/[^\w\s-]+/g, '')
     .replace(/\s+/g, '-')
     .replace(/^-+|-+$/g, '')
+
+const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
+  currency: 'USD',
+  style: 'currency',
+  minimumFractionDigits: 2,
+})
+export function formatCurrency(amount: number) {
+  return CURRENCY_FORMATTER.format(amount)
+}
+
+const NUMBER_FORMATTER = new Intl.NumberFormat('en-US')
+export function formatNumber(number: number) {
+  return NUMBER_FORMATTER.format(number)
+}
