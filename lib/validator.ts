@@ -179,6 +179,10 @@ export const UserSignInSchema = z.object({
   password: Password,
 })
 
+export const UserNameSchema = z.object({
+  name: UserName,
+})
+
 export const UserSignUpSchema = UserSignInSchema.extend({
   name: UserName,
   confirmPassword: Password,
